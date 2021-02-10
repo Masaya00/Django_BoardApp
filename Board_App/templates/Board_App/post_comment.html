@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container">
+    <div class="row">
+    <a href="{% url 'Board_App:post_list' %}">スレッド一覧に戻る</a>
+
+    <form method="post">{% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">投稿する</button>
+    </form>
+    </div>
+    {% for comment in post.comment.all %}
+        <p>{{ comment.created_at }}{{ comment.author }}</p>
+        <p>{{ comment.text }}</p>
+    {% endfor %}
+
+    </div>
+{% endblock content %}

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+    <div class="row">
+    <form method="post">{% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">投稿する</button>
+    </form>
+    </div>
+    {% for post in post_list %}
+    <ul>
+        <a href="{% url 'Board_App:post_comment' post.pk %}">{{ post.title }}</a><p>{{ post.created_at }}</p>
+    </ul>
+    {% endfor %}
+
+    </div>
+
+{% endblock content %}
