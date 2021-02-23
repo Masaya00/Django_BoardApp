@@ -2,7 +2,7 @@ from django.db import models
 from django.utils import timezone
 
 class Post(models.Model):
-    title = models.CharField(max_length=50)
+    title = models.CharField('スレッド名', max_length=50)
     # 必須 / デフォルトに現在日時を指定
     created_at = models.DateTimeField('登録日時', default=timezone.now)
 
@@ -16,8 +16,8 @@ class Post(models.Model):
 class Comment(models.Model):
     # スレッドにコメントを紐付け。　スレッドが削除されればコメントも削除
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
-    author = models.CharField(max_length=50)
-    text = models.TextField()
+    author = models.CharField('ニックネーム', max_length=50)
+    text = models.TextField('コメント内容')
     # 必須 / デフォルトに現在日時を指定
     created_at = models.DateTimeField('登録日時', default=timezone.now)
 
